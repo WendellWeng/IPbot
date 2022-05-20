@@ -17,7 +17,7 @@
 
 #### 整体架构
 
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2etr01ejzj20r00esjsf.jpg" alt="fig01" style="zoom:67%;" />
+<div align="center">  <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2etr01ejzj20r00esjsf.jpg" alt="fig01" style="zoom:67%;" /> </div>
 
 + 首先，用户将查询请求发送给QQ频道服务器；
 + QQ频道服务器通过`websocket`连接将用户的请求推送给机器人；
@@ -27,7 +27,7 @@
 
 #### 通信交互
 
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2etr3dsb7j20jr0fvgmb.jpg" alt="fig02"  />
+<div align="center"> <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2etr3dsb7j20jr0fvgmb.jpg" alt="fig02"  /> </div>
 
 + 机器人客户端向服务器发送`HTTPS`请求连接，其中`GET`请求携带用于验证的`Token`；
 + 服务器响应请求，在响应体中主要携带了建立`websocket`连接的`URL`和分片(相当于机器人的频道个数)；
@@ -51,7 +51,7 @@
 
 #### 代码结构
 
-![fig04](https://tva1.sinaimg.cn/large/e6c9d24egy1h2etrhodv8j206h0aojrg.jpg)
+<div align="center"> <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2etrhodv8j206h0aojrg.jpg" alt="Screen Shot 2022-05-20 at 1.28.20 PM" style="zoom:50%;" /> </div>
 
 + robot.go: 主函数，注册回调函数，发起`HTTPS`请求，并建立`session`会话；
 + clien.go: 接收服务器推送的消息，建立监听线程，并根据操作码，选择对应的业务逻辑进行处理；
@@ -63,29 +63,29 @@
 
 + 输入正常`IP`时, 显示正常的查询结果
 
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2etrkwd6aj20ja0jqjsr.jpg" alt="Screen Shot 2022-05-20 at 1.28.20 PM" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2etrkwd6aj20ja0jqjsr.jpg" alt="Screen Shot 2022-05-20 at 1.28.20 PM" style="zoom:40%;" />
 
 + 输入多个指令时，目前只支持解析第一个指令，忽略掉第一个后面的指令
 
-  <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2etrogyizj20ja0ksabq.jpg" alt="Screen Shot 2022-05-20 at 1.28.48 PM" style="zoom:50%;" />
+  <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2etrogyizj20ja0ksabq.jpg" alt="Screen Shot 2022-05-20 at 1.28.48 PM" style="zoom:40%;" />
 
 + 输入空的`IP`字符串时，机器人会响应错误提示
 
-  <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2etrrg9tuj20ja0fygmu.jpg" alt="Screen Shot 2022-05-20 at 1.28.39 PM" style="zoom:50%;" />
+  <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2etrrg9tuj20ja0fygmu.jpg" alt="Screen Shot 2022-05-20 at 1.28.39 PM" style="zoom:40%;" />
 
 + 输入的`IP`不合法或者非法字符串(例如包含除数字和点以外其他字符等情况)时，机器人会报告`IP`不合法
 
-  <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2etrueyzoj20ja0eoq3y.jpg" alt="Screen Shot 2022-05-20 at 1.28.57 PM" style="zoom:50%;" />
+  <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2etrueyzoj20ja0eoq3y.jpg" alt="Screen Shot 2022-05-20 at 1.28.57 PM" style="zoom:40%;" />
 
 
 
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2etrx69cjj20ja0fyab6.jpg" alt="Screen Shot 2022-05-20 at 1.28.33 PM" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2etrx69cjj20ja0fyab6.jpg" alt="Screen Shot 2022-05-20 at 1.28.33 PM" style="zoom:40%;" />
 
 
 
 + 输入的指令不合法时，机器人会响应错误提示
 
-  <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2ets0mxgwj20ja0g475d.jpg" alt="Screen Shot 2022-05-20 at 1.31.45 PM" style="zoom:50%;" />
+  <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2ets0mxgwj20ja0g475d.jpg" alt="Screen Shot 2022-05-20 at 1.31.45 PM" style="zoom:40%;" />
 
 #### 不足与展望
 
